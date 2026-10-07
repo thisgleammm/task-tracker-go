@@ -1,0 +1,11 @@
+# Binary built from the local package
+/task-cli
+task-cli
+
+# Task database created at runtime
+/tasks.json
+
+# Editor and OS noise
+.DS_Store
+.idea/
+.vscode/
