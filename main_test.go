@@ -475,3 +475,15 @@ func TestRunDoesNotOverwriteCorruptedStore(t *testing.T) {
 		t.Errorf("store was modified: %q", data)
 	}
 }
+
+func TestStoreFilePermissions(t *testing.T) {
+	path := setup(t)
+	capture(t, "add", "verify file mode")
+	info, err := os.Stat(path)
+	if err != nil {
+		t.Fatalf("stat error: %v", err)
+	}
+	if info.Mode().Perm() != 0644 {
+		t.Errorf("expected file mode 0644, got %o", info.Mode().Perm())
+	}
+}

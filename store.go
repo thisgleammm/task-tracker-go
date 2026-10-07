@@ -53,6 +53,10 @@ func saveTasks(path string, tasks []Task) error {
 	}
 	defer os.Remove(tmp.Name())
 
+	if err := tmp.Chmod(0644); err != nil {
+		tmp.Close()
+		return err
+	}
 	if _, err := tmp.Write(data); err != nil {
 		tmp.Close()
 		return err
