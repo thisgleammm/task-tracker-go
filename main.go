@@ -98,12 +98,13 @@ func addTask(tasks []Task, args []string) error {
 		return &usageError{s: "add requires a non-empty description"}
 	}
 
+	t := now()
 	task := Task{
 		ID:          nextID(tasks),
 		Description: description,
 		Status:      StatusTodo,
-		CreatedAt:   now(),
-		UpdatedAt:   now(),
+		CreatedAt:   t,
+		UpdatedAt:   t,
 	}
 	if err := saveTasks(storeFile, append(tasks, task)); err != nil {
 		return err
